@@ -1,6 +1,6 @@
 <?php
 require 'utils/util.php';
-initialize();
+$dotenv = initialize();
 
 // access control
 if (!is_logged_in()) {
@@ -13,6 +13,13 @@ if (!is_logged_in()) {
     <?php
     exit;
 } 
+
+# read from .env
+$blogTitle = $_ENV['BLOG_TITLE'];
+$blogSubtitle = $_ENV['BLOG_SUBTITLE'];
+$user = $_ENV['USER'];
+$password = $_ENV['PASS'];
+
 ?>
 
 <!DOCTYPE html>
@@ -35,21 +42,15 @@ if (!is_logged_in()) {
         <hr>
         <h3>Account</h3>
         <form>
-            <input type="text" id="username" name="username" placeholder="Enter username" required>
-            <input type="password" id="password" name="password" placeholder="Enter password" required>
+            <input type="text" id="username" name="username" value="<?php echo $user; ?>" placeholder="Enter username" required>
+            <input type="password" id="password" name="password" value="<?php echo $password; ?>" placeholder="Enter password" required>
             <input type="submit">
         </form>
 
         <h3>Cosmetics</h3>
         <form>
-            <input type="text" id="blog-title" placeholder="Enter blog title" required>
-            <input type="text" id="blog-subtitle" placeholder="Enter blog subtitle" required>
-            <input type="submit">
-        </form>
-
-        <h3>Posting</h3>
-        <form>
-            <input type="text" id="author"placeholder="Enter author name" required>
+            <input type="text" id="blog-title" value="<?php echo $blogTitle; ?>" placeholder="Enter blog title" required>
+            <input type="text" id="blog-subtitle" value="<?php echo $blogSubtitle; ?>" placeholder="Enter blog subtitle" required>
             <input type="submit">
         </form>
 

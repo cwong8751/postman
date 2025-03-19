@@ -3,7 +3,10 @@ require 'vendor/autoload.php';
 use League\HTMLToMarkdown\HtmlConverter;
 
 require 'utils/util.php';
-initialize();
+$environment = initialize();
+
+$author = $_ENV['USER'];
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title = htmlspecialchars($_POST['title']);
     $content = htmlspecialchars($_POST['content']);
@@ -77,10 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <label for="content">Content:</label>
                     <textarea id="content" name="content" rows="5" placeholder="Enter post content" required></textarea>
                 </div>
-                <div class="form-group">
-                    <label for="author">Author:</label>
-                    <input type="text" id="author" name="author" placeholder="Enter author name" required>
-                </div>
+                <p>Author: <?php echo $author; ?></p>
                 <div class="form-group">
                     <button type="submit">Create Post</button>
                 </div>
