@@ -9,7 +9,11 @@ function initialize() {
 
     // check login
     session_start();
-    if (!isset($_SESSION['user'])) {
-        echo 'You are not logged in';
-    }
+    // if (!isset($_SESSION['user'])) {
+    //     echo 'You are not logged in';
+    // }
+}
+
+function is_logged_in() {
+    return isset($_SESSION['user']);
 }
