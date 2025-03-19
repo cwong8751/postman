@@ -59,6 +59,10 @@ if (!is_logged_in()) {
             <input type="button" value="Export all posts">
         </form>
 
+        <h3>Log out</h3>
+        <form>
+            <input type="button" id="logout-btn" value="Log out">
+        </form>
     </div>
 
 </body>

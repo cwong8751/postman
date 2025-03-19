@@ -17,12 +17,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
     $dotenv->load();
 
-    if (isset($users[$username]) && password_verify($password, $users[$username])) {
+    # get users from .env
+    $envUser = $_ENV['USER'];
+    $envPass = $_ENV['PASS'];
+
+    //TODO: use a secure way to store and compare passwords
+    if (($envUser == $username && $password == $envPass)){
         $_SESSION['user'] = $username;
         header("Location: index.php");
         exit;
-    } else {
-        $error = "Invalid credentials";
+    }
+    else{
+        echo "Invalid credentials";
     }
 }
 ?>

@@ -2,7 +2,10 @@
 // index.php
 require 'vendor/autoload.php';
 require 'utils/util.php';
-initialize();
+$environment = initialize();
+
+$blogTitle = $_ENV['BLOG_TITLE'];
+$blogSubtitle = $_ENV['BLOG_SUBTITLE'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,18 +19,20 @@ initialize();
 
 <body>
     <header>
-        <button onclick="location.href='auth.php'">Login</button>
         <?php
         if (is_logged_in()) {
             echo '<button onclick="location.href=\'create.php\'">Post</button>
         <button onclick="location.href=\'settings.php\'">Settings</button>';
         }
+        else{
+            echo '<button onclick="location.href=\'auth.php\'">Login</button>';
+        }
         ?>
     </header>
 
     <div class="container">
-        <h1>postman</h1>
-        <p>postman subtitle</p>
+        <h1><?php echo $blogTitle; ?></h1>
+        <p><?php echo $blogSubtitle; ?></p>
         <?php
         $directory = './posts';
         if (is_dir($directory)) {

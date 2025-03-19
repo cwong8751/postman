@@ -40,11 +40,12 @@ if (isset($_GET['file'])) {
 
 <body>
     <header>
-        <button onclick="location.href='auth.php'">Login</button>
         <?php
         if (is_logged_in()) {
             echo '<button onclick="location.href=\'create.php\'">Post</button>
         <button onclick="location.href=\'settings.php\'">Settings</button>';
+        } else {
+            echo '<button onclick="location.href=\'auth.php\'">Login</button>';
         }
         ?>
     </header>

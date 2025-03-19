@@ -1,4 +1,5 @@
 <?php
+require 'vendor/autoload.php';
 
 // function to initialize program
 function initialize() {
@@ -12,6 +13,13 @@ function initialize() {
     // if (!isset($_SESSION['user'])) {
     //     echo 'You are not logged in';
     // }
+
+    // read from .env
+    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+    $dotenv->load();
+
+    
+    return $dotenv;
 }
 
 function is_logged_in() {
